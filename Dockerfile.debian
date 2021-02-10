@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV GIT_BRANCH master
 
 # Update packages in base image, avoid caching issues by combining statements, install build software and deps
-RUN	apt-get update && apt-get install -y build-essential git pkg-config libssl-dev bzip2 wget zlib1g-dev libswscale-dev python gettext nettle-dev libgmp-dev libssh2-1-dev libgnutls28-dev libc-ares-dev libxml2-dev libsqlite3-dev autoconf libtool libcppunit-dev && \
+RUN	apt-get update && apt-get install -y build-essential git autopoint gettext pkg-config libssl-dev bzip2 wget zlib1g-dev libswscale-dev python gettext nettle-dev libgmp-dev libssh2-1-dev libgnutls28-dev libc-ares-dev libxml2-dev libsqlite3-dev autoconf libtool libcppunit-dev && \
 	rm -rf /var/lib/apt/lists/* && \
 	#Install aria2 from git, cleaning up and removing all build footprint	
 	git clone https://github.com/aria2/aria2.git /opt/aria2 && \
