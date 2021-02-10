@@ -11,7 +11,7 @@ RUN	apt-get update && apt-get install -y build-essential git pkg-config libssl-d
 	cd /opt/aria2 && \
 	git checkout $GIT_BRANCH && \
 	autoreconf -i && ./configure && \
-	make && make install && \
+	make -j$(nproc --all) && make install && \
 	cd /opt && rm -rf /opt/aria2 && \
 	#Clean up removing all build packages and dev libraries, remove unused dependencies and temp files	
 	apt-get purge -yqq build-essential git pkg-config libssl-dev bzip2 wget zlib1g-dev libswscale-dev python gettext nettle-dev libgmp-dev libssh2-1-dev libgnutls28-dev libc-ares-dev libxml2-dev libsqlite3-dev autoconf libtool libcppunit-dev && \
