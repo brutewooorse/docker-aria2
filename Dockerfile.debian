@@ -1,6 +1,6 @@
-FROM debian:latest
-MAINTAINER Adrian Hobbs <adrianhobbs@gmail.com>
-ENV DEBIAN_FRONTEND noninteractive
+FROM python:3.9-slim-buster
+MAINTAINER Brute Woorse  <brutewoorse@gmail.com>
+
 ENV GIT_BRANCH master
 
 # Update packages in base image, avoid caching issues by combining statements, install build software and deps
