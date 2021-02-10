@@ -4,12 +4,12 @@ MAINTAINER Brute Woorse  brutewoorse@gmail.com
 ENV ARIA2_VERSION "1.35.0"
 
 # Update packages in base image, avoid caching issues by combining statements, install build software and deps
-RUN	apt-get update && apt-get install -y build-essential git autopoint gettext pkg-config libssl-dev bzip2 wget zlib1g-dev libswscale-dev python gettext nettle-dev libgmp-dev libssh2-1-dev libgnutls28-dev libc-ares-dev libxml2-dev libsqlite3-dev autoconf libtool libcppunit-dev && \
+RUN	apt-get update && apt-get install -y build-essential git pkg-config libssl-dev bzip2 wget zlib1g-dev libswscale-dev python gettext nettle-dev libgmp-dev libssh2-1-dev libgnutls28-dev libc-ares-dev libxml2-dev libsqlite3-dev autoconf libtool libcppunit-dev && \
 	rm -rf /var/lib/apt/lists/* && \
 	#Install aria2 from git, cleaning up and removing all build footprint	
-	git clone https://github.com/aria2/aria2.git /opt/aria2 && \
+	git clone https://github.com/tatsuhiro-t/aria2.git /opt/aria2 && \
 	cd /opt/aria2 && \
-	git checkout $ARIA2_VERSION && \
+	git checkout $GIT_BRANCH && \
 	autoreconf -i && ./configure && \
 	make && make install && \
 	cd /opt && rm -rf /opt/aria2 && \
@@ -20,10 +20,8 @@ RUN	apt-get update && apt-get install -y build-essential git autopoint gettext p
 	echo "APT::Install-Suggests \"0\";" >> /etc/apt/apt.conf.d/01norecommend && \
 	apt-get update && apt-get install -y libxml2 libsqlite3-0 libssh2-1 libc-ares2 && \
 	apt-get autoremove --purge -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-    pip3 install --no-cache-dir aria2-$ARIA2_VERSION-*.whl
 
 CMD ["/usr/local/bin/aria2c","--conf-path=/config/aria2.conf"]
-
 # Installing mega sdk python binding
 RUN apt-get -qq update
 RUN apt-get -qq install -y git g++ gcc autoconf automake \
