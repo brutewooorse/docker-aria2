@@ -22,6 +22,7 @@ RUN	apt-get update && apt-get install -y build-essential git pkg-config libssl-d
 	apt-get autoremove --purge -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 CMD ["/usr/local/bin/aria2c","--conf-path=/config/aria2.conf"]
+
 # Installing mega sdk python binding
 RUN apt-get -qq update
 RUN apt-get -qq install -y git g++ gcc autoconf automake \
