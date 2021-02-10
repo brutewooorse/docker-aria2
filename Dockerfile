@@ -1,6 +1,7 @@
 FROM python:3.9-slim-buster
 MAINTAINER Brute Woorse  brutewoorse@gmail.com
-ENV GIT_BRANCH master
+
+ENV ARIA2_VERSION "1.35.0"
 
 # Update packages in base image, avoid caching issues by combining statements, install build software and deps
 RUN	apt-get update && apt-get install -y build-essential git autopoint gettext pkg-config libssl-dev bzip2 wget zlib1g-dev libswscale-dev python gettext nettle-dev libgmp-dev libssh2-1-dev libgnutls28-dev libc-ares-dev libxml2-dev libsqlite3-dev autoconf libtool libcppunit-dev && \
@@ -8,7 +9,7 @@ RUN	apt-get update && apt-get install -y build-essential git autopoint gettext p
 	#Install aria2 from git, cleaning up and removing all build footprint	
 	git clone https://github.com/aria2/aria2.git /opt/aria2 && \
 	cd /opt/aria2 && \
-	git checkout $GIT_BRANCH && \
+	git checkout $ARIA2_VERSION && \
 	autoreconf -i && ./configure && \
 	make && make install && \
 	cd /opt && rm -rf /opt/aria2 && \
@@ -19,7 +20,7 @@ RUN	apt-get update && apt-get install -y build-essential git autopoint gettext p
 	echo "APT::Install-Suggests \"0\";" >> /etc/apt/apt.conf.d/01norecommend && \
 	apt-get update && apt-get install -y libxml2 libsqlite3-0 libssh2-1 libc-ares2 && \
 	apt-get autoremove --purge -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
+    pip3 install --no-cache-dir aria2-$ARIA2_VERSION-*.whl
 
 CMD ["/usr/local/bin/aria2c","--conf-path=/config/aria2.conf"]
 
@@ -38,3 +39,4 @@ RUN git clone https://github.com/meganz/sdk.git sdk && cd sdk &&\
     make -j$(nproc --all) && cd bindings/python/ && \
     python3 setup.py bdist_wheel && cd dist/ && \
     pip3 install --no-cache-dir megasdk-$MEGA_SDK_VERSION-*.whl
+
