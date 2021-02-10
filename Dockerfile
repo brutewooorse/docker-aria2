@@ -39,3 +39,11 @@ RUN git clone https://github.com/meganz/sdk.git sdk && cd sdk &&\
     python3 setup.py bdist_wheel && cd dist/ && \
     pip3 install --no-cache-dir megasdk-$MEGA_SDK_VERSION-*.whl
 
+RUN apt-get -qq update && \
+    apt-get install -y software-properties-common && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt-add-repository non-free && \
+    apt-get -qq update && \
+    apt-get -qq install -y p7zip-full p7zip-rar aria2 curl pv jq ffmpeg locales python3-lxml && \
+    apt-get purge -y software-properties-common
+
