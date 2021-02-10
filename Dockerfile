@@ -1,7 +1,7 @@
 FROM python:3.9-slim-buster
 MAINTAINER Brute Woorse  brutewoorse@gmail.com
 
-ENV ARIA2_VERSION "1.35.0"
+ENV GIT_BRANCH master
 
 # Update packages in base image, avoid caching issues by combining statements, install build software and deps
 RUN	apt-get update && apt-get install -y build-essential git pkg-config libssl-dev bzip2 wget zlib1g-dev libswscale-dev python gettext nettle-dev libgmp-dev libssh2-1-dev libgnutls28-dev libc-ares-dev libxml2-dev libsqlite3-dev autoconf libtool libcppunit-dev && \
