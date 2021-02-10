@@ -25,7 +25,7 @@ CMD ["/usr/local/bin/aria2c","--conf-path=/config/aria2.conf"]
 
 # Installing mega sdk python binding
 RUN apt-get -qq update
-RUN apt-get -qq install -y git g++ gcc autoconf automake \
+RUN apt-get -qq install -y git g++ gcc autopoint gettext autoconf automake \
     m4 libtool qt4-qmake make libqt4-dev libcurl4-openssl-dev \
     libcrypto++-dev libsqlite3-dev libc-ares-dev \
     libsodium-dev libnautilus-extension-dev \
