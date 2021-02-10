@@ -7,7 +7,7 @@ ENV GIT_BRANCH master
 RUN	apt-get update && apt-get install -y build-essential git pkg-config libssl-dev bzip2 wget zlib1g-dev libswscale-dev python gettext nettle-dev libgmp-dev libssh2-1-dev libgnutls28-dev libc-ares-dev libxml2-dev libsqlite3-dev autoconf libtool libcppunit-dev && \
 	rm -rf /var/lib/apt/lists/* && \
 	#Install aria2 from git, cleaning up and removing all build footprint	
-	git clone https://github.com/tatsuhiro-t/aria2.git /opt/aria2 && \
+	git clone https://github.com/aria2/aria2.git /opt/aria2 && \
 	cd /opt/aria2 && \
 	git checkout $GIT_BRANCH && \
 	autoreconf -i && ./configure && \
