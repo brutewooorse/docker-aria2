@@ -46,8 +46,6 @@ RUN apt-get -qq update && apt-get -qq install -y git g++ gcc autopoint gettext a
 	apt-get update && apt-get install -y libxml2 libsqlite3-0 libssh2-1 libc-ares2 && \
 	apt-get autoremove --purge -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-    
-
 RUN apt-get -qq update && \
     apt-get install -y software-properties-common && \
     rm -rf /var/lib/apt/lists/* && \
