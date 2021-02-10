@@ -1,5 +1,5 @@
 FROM python:3.9-slim-buster
-MAINTAINER Brute Woorse  <brutewoorse@gmail.com>
+MAINTAINER Brute Woorse  brutewoorse@gmail.com
 
 ENV GIT_BRANCH master
 
