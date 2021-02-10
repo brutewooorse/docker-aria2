@@ -23,6 +23,7 @@ RUN	apt-get update && apt-get install -y build-essential git autopoint gettext p
 
 CMD ["/usr/local/bin/aria2c","--conf-path=/config/aria2.conf"]
 
+# Installing mega sdk python binding
 RUN apt-get -qq update
 RUN apt-get -qq install -y git g++ gcc autoconf automake \
     m4 libtool qt4-qmake make libqt4-dev libcurl4-openssl-dev \
