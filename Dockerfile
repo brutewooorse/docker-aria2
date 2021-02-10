@@ -44,7 +44,7 @@ RUN apt-get -qq update && apt-get -qq install -y git g++ gcc autopoint gettext a
 	echo "APT::Install-Recommends \"0\";" >> /etc/apt/apt.conf.d/01norecommend && \
 	echo "APT::Install-Suggests \"0\";" >> /etc/apt/apt.conf.d/01norecommend && \
 	apt-get update && apt-get install -y libxml2 libsqlite3-0 libssh2-1 libc-ares2 && \
-	apt-get autoremove --purge -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+	apt-get autoremove --purge -y software-properties-common && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
     
 
