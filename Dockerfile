@@ -17,7 +17,7 @@ RUN apt-get -qq update && apt-get -qq install -y git g++ gcc autopoint gettext a
     python3 setup.py bdist_wheel && cd dist/ && \
     pip3 install --no-cache-dir megasdk-$MEGA_SDK_VERSION-*.whl && \
    #Clean up removing all build packages and dev libraries, remove unused dependencies and temp files	
-	apt-get purge -yqq build-essential git pkg-config libssl-dev bzip2 wget zlib1g-dev libswscale-dev python gettext nettle-dev libgmp-dev libssh2-1-dev libgnutls28-dev libc-ares-dev libxml2-dev libsqlite3-dev autoconf libtool libcppunit-dev && \
+	apt-get purge -yqq build-essential git pkg-config libssl-dev bzip2 wget zlib1g-dev libswscale-dev autopoint python gettext nettle-dev libgmp-dev libssh2-1-dev libgnutls28-dev libc-ares-dev libxml2-dev libsqlite3-dev autoconf libtool libcppunit-dev && \
 	#Install shared libraries only 
 	echo "APT::Install-Recommends \"0\";" >> /etc/apt/apt.conf.d/01norecommend && \
 	echo "APT::Install-Suggests \"0\";" >> /etc/apt/apt.conf.d/01norecommend && \
